@@ -29,11 +29,20 @@
 #     return song
 
 
+
+
 from fastapi import FastAPI
+from modules.auth.view import router as login_router   #new 
 
-app = FastAPI()
+
+def include_router(app):
+    app.include_router(login_router, prefix="", tags=["auth-webapp"])  
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+def start_application():
+    app = FastAPI()
+    include_router(app)
+    return app
+
+
+app = start_application()
