@@ -39,10 +39,10 @@ def include_router(app):
     app.include_router(login_router, prefix="", tags=["auth-webapp"])  
 
 
-def start_application():
+def create_application():
     app = FastAPI()
     include_router(app)
     return app
 
 
-app = start_application()
+app = create_application()
