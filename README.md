@@ -87,3 +87,12 @@ from fastoo import render_template
 
     return render_template("template/path", {}, request, directory="custom/templates/path")
 ```
+
+## Modules
+
+Modules must contain info.toml like this
+
+```toml
+[base]
+url_prefix = "/auth"
+```
