@@ -1,5 +1,5 @@
+import os
 from fastoo.api.templates import render_template
-
 
 class ReqMan:
     def __init__(self, module, request):
@@ -13,9 +13,18 @@ class ReqMan:
         self.module.request = None
 
 class Module:
-    def __init__(self, path):
+    def __init__(self, path, templates="templates", render_own_templates=False):
+        '''
+        path: __file__
+        '''
         self.path = path
-        self.request = None 
+        self.request = None
+        self.base_dir = os.path.dirname(os.path.abspath(path))
+
+        if render_own_templates:
+            self.templates = os.path.join(self.base_dir, templates)
+        else:
+            self.templates = templates 
 
     def set(self, request):
         return ReqMan(self, request)
@@ -24,6 +33,7 @@ class Module:
         if self.request is None:
             raise Exception("Please call <with module.set(request) as m:> to set the current request")
         
-        return render_template(path, template_vars, self.request)
+        print(self.templates)
+        return render_template(path, template_vars, self.request, directory=self.templates)
         
     

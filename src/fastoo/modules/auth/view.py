@@ -12,12 +12,12 @@ from pydantic_settings import BaseSettings
 from init import get_settings
 
 router = APIRouter(include_in_schema=False)
-module = Module(__file__)
+module = Module(__file__, render_own_templates=True)
 
 @router.get("/login/")
 def login(request: Request):
     with module.set(request) as m:
-        return module.render_template("themes/front/dingy/index.html", {})
+        return module.render_template("abc.html", {})
 
 
 @router.get("/info")
