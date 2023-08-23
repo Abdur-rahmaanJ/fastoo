@@ -16,7 +16,7 @@ module = Module(__file__, render_own_templates=True)
 router = APIRouter(prefix=module.url_prefix, include_in_schema=False)
 
 
-@router.get("/login/")
+@router.get("/login")
 def login(request: Request):
     with module.set(request) as m:
         return module.render_template("abc.html", {})

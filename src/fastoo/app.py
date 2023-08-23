@@ -1,42 +1,19 @@
-# from fastapi import Depends, FastAPI
-# from sqlmodel import select
-# from sqlmodel.ext.asyncio.session import AsyncSession
-
-# from fastoo.db import get_session, init_db
-# from fastoo.models import Song, SongCreate
-
-# app = FastAPI()
-
-
-# @app.get("/ping")
-# async def pong():
-#     return {"ping": "pong!"}
-
-
-# @app.get("/songs", response_model=list[Song])
-# async def get_songs(session: AsyncSession = Depends(get_session)):
-#     result = await session.execute(select(Song))
-#     songs = result.scalars().all()
-#     return [Song(name=song.name, artist=song.artist, year=song.year, id=song.id) for song in songs]
-
-
-# @app.post("/songs")
-# async def add_song(song: SongCreate, session: AsyncSession = Depends(get_session)):
-#     song = Song(name=song.name, artist=song.artist, year=song.year)
-#     session.add(song)
-#     await session.commit()
-#     await session.refresh(song)
-#     return song
-
-
-
-
 from fastapi import FastAPI
-from modules.auth.view import router as login_router   #new 
+from fastoo.api.file import get_folders
 
+import importlib
+import os 
+import sys 
+
+# from modules.auth.view import router as login_router   #new 
+
+base_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, base_path)
 
 def include_router(app):
-    app.include_router(login_router, prefix="", tags=["auth-webapp"])  
+    for module in get_folders("./modules"):
+        module_view = importlib.import_module(f"modules.{module}.view")
+        app.include_router(module_view.router, prefix="")  
 
 
 def create_application():
