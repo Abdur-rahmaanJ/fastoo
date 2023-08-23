@@ -18,6 +18,7 @@ dependencies = [
     "uvicorn",
     "alembic",
     "sqlmodel",
+    "pydantic-settings",
     "importlib-metadata>=3.6.0; python_version < '3.10'",
 ]
 dynamic = ["version"]
