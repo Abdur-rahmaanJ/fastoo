@@ -19,7 +19,7 @@ def verify_module(module):
     except KeyError:
         raise Exception(f'fastoo-error> [base] section in info.toml should contain url_prefix="/path" for module {module.path}')
     
-    if not toml_content["base"]["url_prefix"].strip():
-        raise Exception(f"fastoo-error> [base] -> url_prefix cannot be empty for module {module.path}")
+    # if not toml_content["base"]["url_prefix"].strip():
+    #     raise Exception(f"fastoo-error> [base] -> url_prefix cannot be empty for module {module.path}")
     
     return toml_content
