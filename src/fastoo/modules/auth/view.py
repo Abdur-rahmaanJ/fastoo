@@ -1,4 +1,6 @@
 from fastoo import render_template
+from fastoo.api.module import Module
+
 from fastapi import APIRouter
 from fastapi import Request
 from fastapi import Depends
@@ -10,11 +12,12 @@ from pydantic_settings import BaseSettings
 from init import get_settings
 
 router = APIRouter(include_in_schema=False)
-
+module = Module(__file__)
 
 @router.get("/login/")
 def login(request: Request):
-    return render_template("themes/front/dingy/index.html", {}, request)
+    with module.set(request) as m:
+        return module.render_template("themes/front/dingy/index.html", {})
 
 
 @router.get("/info")
