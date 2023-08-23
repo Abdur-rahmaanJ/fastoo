@@ -5,11 +5,10 @@ readme = "README.md"
 maintainers = [{name = "Abdur-Rahmaan Janhangeer", email = "arj.python@gmail.com"}]
 classifiers = [
     "Environment :: Web Environment",
-    "Framework :: Fastoo",
     "Intended Audience :: Developers",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Application Frameworks"
 ]
 requires-python = ">=3.8"
 dependencies = [
@@ -32,3 +31,6 @@ version = {attr = "fastoo.__version__"}
 
 [project.scripts]
 fastoo = "fastoo.api.cli:cli"
+
+[options]
+include_package_data = true
