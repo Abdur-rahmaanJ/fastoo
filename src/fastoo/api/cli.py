@@ -12,12 +12,13 @@ def cli():
     pass
 
 
-@cli.command("new", with_appcontext=False)
+@cli.command("new")
 @click.argument("projname", required=False, default="")
 @click.option("--verbose", "-v", is_flag=True, default=False)
 @click.option("--modules", "-m", is_flag=True, default=False)
-def new(projname):
-    src_fastoo = Path(__file__).parent.absolute()
+def new(projname, verbose, modules):
+    modules_flag = modules
+    src_fastoo = Path(__file__).parent.parent.absolute()
     here = os.getcwd()
     root_proj_path = os.path.join(here, projname)
     project_path = root_proj_path
@@ -45,6 +46,12 @@ def new(projname):
             "static",
         ),
     )
+
+    if modules_flag:
+        copytree(
+            os.path.join(src_fastoo, "modules"),
+            os.path.join(project_path, "modules"),
+        )
 
     trymkfile(
         os.path.join(root_proj_path, "requirements.txt"),
