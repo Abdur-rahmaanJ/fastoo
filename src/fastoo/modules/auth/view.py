@@ -11,8 +11,10 @@ from pydantic_settings import BaseSettings
 
 from init import get_settings
 
-router = APIRouter(include_in_schema=False)
+
 module = Module(__file__, render_own_templates=True)
+router = APIRouter(prefix=module.url_prefix, include_in_schema=False)
+
 
 @router.get("/login/")
 def login(request: Request):
