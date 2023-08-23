@@ -1,5 +1,6 @@
 import os
 from fastoo.api.templates import render_template
+from fastoo.api.verify import verify_module
 
 class ReqMan:
     def __init__(self, module, request):
@@ -20,11 +21,17 @@ class Module:
         self.path = path
         self.request = None
         self.base_dir = os.path.dirname(os.path.abspath(path))
+        self.info_toml_path = os.path.join(self.base_dir, "info.toml")
 
         if render_own_templates:
             self.templates = os.path.join(self.base_dir, templates)
         else:
             self.templates = templates 
+
+        info = verify_module(self)
+
+        self.url_prefix = info["base"]["url_prefix"]
+
 
     def set(self, request):
         return ReqMan(self, request)
