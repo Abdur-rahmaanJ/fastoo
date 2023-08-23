@@ -4,6 +4,17 @@ A powerful framework for dealing with FastAPI apps.
 
 It includes various utilities for building big FastAPI apps, inclding templates and modules.
 
+## Quickstart
+
+-m means add default modules
+
+```
+python -m pip install fastoo
+fastoo new blog -m
+cd blog
+uvicorn app:app --reload
+```
+
 ### Configs
 
 Define configuration profile in init (development, production, testing)
