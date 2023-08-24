@@ -61,6 +61,8 @@ def new(projname, verbose, modules):
     trymkfile(
         os.path.join(root_proj_path, "requirements.txt"),
         f"fastoo=={__version__}\n")
+    
+    click.echo(f"✔️  Fastoo app <{projname}> created!")
 
 
 @cli.command("module", help="Create new module")
@@ -142,7 +144,9 @@ Fastoo running successfully. <br>App name: $open app_name $close
         os.path.join(os.path.join(module_path, "templates"), "index.html"), index_html)
 
 
+    click.echo(f"✔️   Fastoo module <{name}> created!")
 
 
 
 cli.add_command(new)
+cli.add_command(module)
