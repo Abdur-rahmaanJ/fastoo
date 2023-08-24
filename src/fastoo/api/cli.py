@@ -54,6 +54,8 @@ def new(projname, verbose, modules):
             os.path.join(src_fastoo, "modules"),
             os.path.join(project_path, "modules"),
         )
+    else:
+        trymkdir(os.path.join(project_path, "modules"), verbose=verbose)
 
     trymkfile(
         os.path.join(root_proj_path, "requirements.txt"),
