@@ -15,6 +15,18 @@ cd blog
 uvicorn app:app --reload
 ```
 
+### More commands
+
+```
+fastoo module bing
+```
+
+Creates a new module named bing in modules/
+
+Url defined in info.toml.
+
+Can be changed to what we want. Default is /module_name
+
 ### Configs
 
 Define configuration profile in init (development, production, testing)
