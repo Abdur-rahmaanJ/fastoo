@@ -5,6 +5,7 @@ from shutil import copytree
 from shutil import ignore_patterns
 from pathlib import Path
 from fastoo import __version__
+from string import Template
 
 from fastoo.api.file import trymkfile
 from fastoo.api.file import trymkdir
@@ -126,17 +127,19 @@ def login(request: Request, settings: Annotated[BaseSettings, Depends(get_settin
 """)
     ## create info.toml
     trymkfile(
-        os.path.join(module_path, "view.py"),f"""
+        os.path.join(module_path, "info.toml"),f"""
 [base]
-url_prefix = "/{name.lowercase()}"
+url_prefix = "/{name.lower()}"
 """)
     ## create templates folder
     trymkdir(os.path.join(module_path, "templates"), verbose=verbose)
     ## create template index
-    trymkfile(
-        os.path.join(os.path.join(module_path, "templates"), "index.html"),f"""
-Fastoo running successfully. <br>App name: {{ app_name }}
+    index_html = Template("""
+Fastoo running successfully. <br>App name: $open app_name $close
 """)
+    index_html = index_html.substitute(open='{{',close='}}')
+    trymkfile(
+        os.path.join(os.path.join(module_path, "templates"), "index.html"), index_html)
 
 
 
