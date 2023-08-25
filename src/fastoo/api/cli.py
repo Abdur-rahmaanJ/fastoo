@@ -127,6 +127,17 @@ def login(request: Request, settings: Annotated[BaseSettings, Depends(get_settin
     trymkfile(
         os.path.join(module_path, "models.py"),"""
 """)
+    ## create forms.py
+    trymkfile(
+        os.path.join(module_path, "forms.py"),"""
+from starlette_wtf import StarletteForm
+from wtforms import StringField
+from wtforms.validators	import DataRequired
+
+
+class MyForm(StarletteForm):
+    name = StringField('name', validators=[DataRequired()])
+""")
     ## create info.toml
     trymkfile(
         os.path.join(module_path, "info.toml"),f"""
