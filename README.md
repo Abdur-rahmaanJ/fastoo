@@ -119,3 +119,11 @@ Modules must contain info.toml like this
 [base]
 url_prefix = "/auth"
 ```
+
+A module includes 
+
+- view.py
+- forms.py # stafrlette-wtforms
+- models.py 
+- info.toml
+- business.py # view logic goes here
