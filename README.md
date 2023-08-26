@@ -127,3 +127,13 @@ A module includes
 - models.py 
 - info.toml
 - business.py # view logic goes here
+
+## Validation
+
+fastoo.api.validation has these helpful features
+
+- verify_slug # for wtf forms
+- is_valid_url
+- is_valid_slug
+- is_empty_str
+- is_alpha_num_underscore 
