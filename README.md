@@ -9,7 +9,7 @@ It includes various utilities for building big FastAPI apps, inclding templates 
 -m means add default modules
 
 ```
-python -m pip install fastoo==0.1.3
+python -m pip install fastoo==0.1.4
 fastoo new blog -m
 cd blog
 uvicorn app:app --reload
