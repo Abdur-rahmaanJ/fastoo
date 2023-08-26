@@ -142,7 +142,7 @@ class MyForm(StarletteForm):
     trymkfile(
         os.path.join(module_path, "info.toml"),f"""
 [base]
-url_prefix = "/{name.lower()}"
+url_prefix = "/{name.casefold()}"
 """)
     ## create templates folder
     trymkdir(os.path.join(module_path, "templates"), verbose=verbose)
