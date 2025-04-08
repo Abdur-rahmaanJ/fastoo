@@ -1,6 +1,8 @@
 # fastoo
 
-A powerful framework for dealing with FastAPI apps.
+[![PyPI Downloads](https://static.pepy.tech/badge/fastoo)](https://pepy.tech/projects/fastoo)
+
+A powerful framework for dealing with FastAPI apps. 
 
 It includes various utilities for building big FastAPI apps, inclding templates and modules.
 
